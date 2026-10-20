@@ -1,0 +1,45 @@
+[project]
+name = "ringabot"
+version = "0.2.0"
+description = "A phone line for a Grok voice agent: MCP server, xAI realtime voice, SIP calls (bring your own carrier number)."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+authors = [{ name = "wembledev" }]
+dependencies = [
+    "httpx>=0.27",
+    "phonenumbers>=9.0.41",
+    "starlette>=0.41",
+    "uvicorn>=0.32",
+    "websockets>=13",
+]
+
+[project.scripts]
+ringabot = "ringabot.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ringabot"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]

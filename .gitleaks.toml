@@ -1,0 +1,10 @@
+title = "ringabot"
+
+[extend]
+useDefault = true
+
+[allowlist]
+paths = [
+  '''uv\.lock''',
+  '''tests/test_no_secrets\.py''',
+]
